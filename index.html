@@ -10,10 +10,47 @@
 </head>
 <body>
 
-    <h1  >Exchange Rate en proceso...</h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Exchange Rate</a>
+          
+              </div>
+            </div>
+          </nav>
 
-    <button class="btn" >Hola</button>
+    </header>
 
+    <div class="container" id="info">
+        <h1  >Exchange Rate en proceso...</h1>
+    </div>
+
+    <div class="container col-6">
+        <form>
+            <div class="mb-3 ">
+              <label for="date" class="form-label">Ingresa una fecha</label>
+              <input type="date" class="form-control" id="date" aria-describedby="date">
+              <div id="date" class="form-text">No compartiremos tu información con nadie</div>
+            </div>
+            <div class="mb-3 ">
+              <label for="base" class="form-label">Ingresa la moneda Base </label>
+              <select> 
+                <option value="USD">Dólar</option> 
+                <option value="USD">Euro</option>  
+                <option value="USD">Real</option>       
+                <option value="USD">Libras</option>
+                <option value="USD">Florines</option>    
+             </select>
+              <!-- <input type="text" class="form-control" id="base"> -->
+            </div>
+           
+            <button type="submit" class="btn btn-success">Consultar</button>
+          </form>
+
+    </div>
+   
+
+    
 
 <script src="src/main.js"></script>
 </body>
