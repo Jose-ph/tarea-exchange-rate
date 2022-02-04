@@ -22,11 +22,11 @@
     </header>
 
     <div class="container" id="info">
-        <h1  >Exchange Rate en proceso...</h1>
+        <h2 id="title" >Elige una fecha y una base para ver los tipos de cambios disponibles</h2>
     </div>
 
     <div class="container col-6">
-        <form>
+        <form id="form">
             <div class="mb-3 ">
               <label for="date" class="form-label">Ingresa una fecha</label>
               <input type="date" class="form-control" id="date" aria-describedby="date">
@@ -34,7 +34,7 @@
             </div>
             <div class="mb-3 ">
               <label for="base" class="form-label">Ingresa la moneda Base </label>
-              <select> 
+              <select name="currency"> 
                 <option value="USD">Dólar</option> 
                 <option value="USD">Euro</option>  
                 <option value="USD">Real</option>       
@@ -44,7 +44,7 @@
               <!-- <input type="text" class="form-control" id="base"> -->
             </div>
            
-            <button type="submit" class="btn btn-success">Consultar</button>
+            <button id="btn-consult" type="submit" class="btn btn-success">Consultar</button>
           </form>
 
     </div>
