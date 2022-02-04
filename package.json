@@ -1,0 +1,22 @@
+{
+  "name": "tarea-exchange-rate",
+  "version": "1.0.0",
+  "description": "Primer punto de la tarea de la clase 12 de r/argentina-programa",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jose-ph/tarea-exchange-rate.git"
+  },
+  "author": "Jose Basualdo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jose-ph/tarea-exchange-rate/issues"
+  },
+  "homepage": "https://github.com/Jose-ph/tarea-exchange-rate#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
