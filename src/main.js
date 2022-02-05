@@ -1,6 +1,8 @@
 
-const API_KEY = "90697dc549999b99dacdb507dc685f0f"
+//Using https://exchangerate.host/#/docs
+//const API_KEY = ""
 /* const $form = document.querySelector('#form'); */
+
 const $btnConsult = document.querySelector('#btn-consult')
 
   
@@ -16,27 +18,27 @@ $btnConsult.onclick= function(e) {
     console.log(userBase)
     console.log($date)
 
-    getLatestExchange(userBase,$date)
-    
+     getExchangeByBaseAndDate(userBase,$date)
+     
+
     e.preventDefault();
     
 }
 
 
-function getLatestExchange(base,date){
+function getExchangeByBaseAndDate(base,date){
 
+ 
 
-    /* fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=90697dc549999b99dacdb507dc685f0f&base=${base}`) */
-   /* fetch(`http://api.exchangeratesapi.io/v1/${date}?access_key=90697dc549999b99dacdb507dc685f0f&base=${base}`) */
-   /* 
-    */
-   fetch(`http://api.exchangeratesapi.io/v1/${date}?access_key=${API_KEY}&symbols=USD,AUD,CAD,PLN,MXN&format=1`)
+   fetch(`https://api.exchangerate.host/${date}?base=${base}`)
   .then(response => response.json())
 
   .then(response => {
 
     console.log(response)
-    //setSymbols(response.symbols)
+    console.log(response.rates)
+    
+    handleRates(response.rates)
 
   })
 
@@ -46,23 +48,47 @@ function getLatestExchange(base,date){
 
 
 
+}
+
+
+function handleRates(rates){
+
+
+  const $ratesContainer = document.querySelector('#rates-container');
+  const $rates= document.querySelector('#rates');
+
+  let ratesKeys = Object.keys(rates)
+
+  ratesKeys.forEach(key => {
+
+    let newLi = document.createElement('li')
+    newLi.textContent = `${key} : ${rates[key]}`
+
+    $ratesContainer.appendChild(newLi)
+    
+    
+  });
+
+
+
+
 
 }
 
 
+function handleSymbols(){  
 
-function handleSymbols(){  //En la API se llaman symbols a  las bases
-    
-    //esta función obtendrá las bases disponibles de la api
-    //luego se utilizará esta información para completar el select
-
-    fetch(`http://api.exchangeratesapi.io/v1/symbols?access_key=90697dc549999b99dacdb507dc685f0f`)
+    fetch(`https://api.exchangerate.host/symbols`)
   .then(response => response.json())
 
   .then(response => {
-
-    //console.log(response.symbols)
-    setSymbols(response.symbols)
+    /* Objeto de la forma
+      Objeto{ ARS:{description: "Peso argentino"}, code:"ARS"}
+    
+    */
+    console.log(response.symbols) 
+    let symbols = response.symbols
+    setSymbols(symbols)
 
   })
 
@@ -81,31 +107,36 @@ function setSymbols (symbols){
 
     let $select = document.querySelector('#select')
 
-    let keys = Object.keys(symbols)
-    let values = Object.values(symbols)
+    /* Objeto de la forma
+      Objeto{ ARS:{description: "Peso argentino"}, code:"ARS"}
+    
+    */
 
-    keys.forEach((key,i) => {
+    let supportedCodes = symbols // un array [] con dos posiciones
+    
+    let currenciesKeys = Object.keys(supportedCodes)
+  
+    currenciesKeys.forEach(key => { 
 
-        let newOption = document.createElement('option')
-       /*  <option value="USD">Euro</option>   */
-       newOption.setAttribute('value',`${key}`)
-       newOption.textContent = `${values[i]}`
+        createOptions(supportedCodes,key,$select)
 
-     
-       $select.appendChild(newOption)
-
-
-        
     });
 
-   
-
-        
-        
-        
-    
 
 
+}
+
+
+function createOptions(symbols,key,parent){
+
+
+
+  let newOption = document.createElement('option')
+  newOption.setAttribute('value',`${key}`)
+  newOption.textContent = `${key} - ${symbols[key].description}`
+
+
+ parent.appendChild(newOption) 
 
 
 }
