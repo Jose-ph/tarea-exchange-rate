@@ -9,23 +9,28 @@ const $btnConsult = document.querySelector('#btn-consult')
 $btnConsult.onclick= function(e) {
 
     const $title = document.querySelector('#title');
-    const $date = document.querySelector('#date');
+    const $date = document.querySelector('#date').value;
     const $form = document.querySelector('#form');
     
     let userBase = $form.currency.value
     console.log(userBase)
+    console.log($date)
 
-    getLatestExchange(userBase)
+    getLatestExchange(userBase,$date)
     
     e.preventDefault();
     
 }
 
 
-function getLatestExchange(base){
+function getLatestExchange(base,date){
 
 
-    fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=90697dc549999b99dacdb507dc685f0f&base=${base}`)
+    /* fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=90697dc549999b99dacdb507dc685f0f&base=${base}`) */
+   /* fetch(`http://api.exchangeratesapi.io/v1/${date}?access_key=90697dc549999b99dacdb507dc685f0f&base=${base}`) */
+   /* 
+    */
+   fetch(`http://api.exchangeratesapi.io/v1/${date}?access_key=${API_KEY}&symbols=USD,AUD,CAD,PLN,MXN&format=1`)
   .then(response => response.json())
 
   .then(response => {
@@ -69,12 +74,7 @@ function handleSymbols(){  //En la API se llaman symbols a  las bases
     
 }
 
-function getExchangesRateFromBase(base){
 
-    //esta función obtendrá los tipos de cambio según la base
-
-
-}
 
 
 function setSymbols (symbols){
