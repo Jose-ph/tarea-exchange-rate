@@ -5,25 +5,39 @@
 
 const $btnConsult = document.querySelector('#btn-consult')
 
-  
+const $newConsultbtn = document.querySelector('#reset')
+
+ 
   handleSymbols();
 
 $btnConsult.onclick= function(e) {
+
+  deletePreviousRates()  
 
     const $title = document.querySelector('#title');
     const $date = document.querySelector('#date').value;
     const $form = document.querySelector('#form');
     
     let userBase = $form.currency.value
-    console.log(userBase)
-    console.log($date)
-
+   
      getExchangeByBaseAndDate(userBase,$date)
+     const $exchangeTitle = document.querySelector('#rates-container h2');
+     $exchangeTitle.textContent = `Tipo de cambio con base ${userBase}:`
      
 
     e.preventDefault();
     
 }
+
+
+$newConsultbtn.onclick = reset;
+
+
+
+
+
+
+
 
 
 function getExchangeByBaseAndDate(base,date){
@@ -35,9 +49,6 @@ function getExchangeByBaseAndDate(base,date){
 
   .then(response => {
 
-    console.log(response)
-    console.log(response.rates)
-    
     handleRates(response.rates)
 
   })
@@ -53,24 +64,29 @@ function getExchangeByBaseAndDate(base,date){
 
 function handleRates(rates){
 
-
+  const $form = document.querySelector('#form')
   const $ratesContainer = document.querySelector('#rates-container');
   const $rates= document.querySelector('#rates');
+  const $title = document.querySelector('#title');
 
   let ratesKeys = Object.keys(rates)
+ 
 
   ratesKeys.forEach(key => {
 
     let newLi = document.createElement('li')
     newLi.textContent = `${key} : ${rates[key]}`
 
-    $ratesContainer.appendChild(newLi)
+    $rates.appendChild(newLi)
+    //$ratesContainer.appendChild(newLi)
     
     
   });
 
 
-
+  $form.classList.add('d-none')
+  $title.classList.add('d-none')
+  $ratesContainer.classList.remove('d-none')
 
 
 }
@@ -140,3 +156,33 @@ function createOptions(symbols,key,parent){
 
 
 }
+
+function deletePreviousRates(){
+
+  let ratesDisplay = document.querySelectorAll('li')
+
+  ratesDisplay.forEach(rate=> {
+    rate.remove();
+    
+  });
+}
+
+function reset(){
+
+  const $form = document.querySelector('#form');
+  const $title = document.querySelector('#title');
+  const $ratesContainer = document.querySelector('#rates-container');
+
+
+  $form.classList.remove('d-none')
+  $title.classList.remove('d-none')
+  $ratesContainer.classList.add('d-none')
+
+
+
+}
+
+
+//Eliminar li anteriores en nueva petición
+//Validar formulario y estilos de error
+//test con cypress

@@ -25,8 +25,8 @@
         <h2 id="title" >Elige una fecha y una base para ver los tipos de cambios disponibles</h2>
     </div>
 
-    <div class="container col-6">
-        <form id="form">
+    <div class="container col-6 d-flex flex-column justify-content-center">
+        <form id="form"  class=" d-flex flex-column justify-content-center">
             <div class="mb-3 ">
               <label for="date" class="form-label">Ingresa una fecha</label>
               <input type="date" class="form-control" id="date" aria-describedby="date">
@@ -44,13 +44,14 @@
            
             </div>
            
-            <button id="btn-consult" type="submit" class="btn btn-success">Consultar</button>
+            <button id="btn-consult" type="submit" class="btn btn-success ">Consultar</button>
           </form>
 
 
-          <div class="container" id="rates-container">
+          <div class="container my-5 d-none" id="rates-container">
 
-            <h2>Tipos de cambio:</h2>
+            <h2 >Tipos de cambio:</h2>
+            <button id="reset" class="btn btn-warning">Nueva Consulta</button>
             <ul id="rates">
 
             </ul>
