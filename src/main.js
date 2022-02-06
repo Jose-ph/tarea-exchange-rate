@@ -145,11 +145,30 @@ function reset() {
   const $form = document.querySelector("#form");
   const $title = document.querySelector("#title");
   const $ratesContainer = document.querySelector("#rates-container");
+  let dateInfo = document.querySelector('#date-info');
 
   $form.classList.remove("d-none");
   $title.classList.remove("d-none");
   $ratesContainer.classList.add("d-none");
+  dateInfo.textContent ="No compartiremos tu información con nadie"
 }
+
+
+
+
+function compareDates(date){
+
+
+  const today = new Date()
+
+  return  date.getDate() == today.getDate() && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear()
+
+}
+
+
+
+
+
 
 
 //From stackoverflow  https://stackoverflow.com/questions/6177975/how-to-validate-date-with-format-mm-dd-yyyy-in-javascript
@@ -159,19 +178,14 @@ function isValidDate(dateString)
    //get current month and date
   // now the user can't request a date in the future.
    let $today = new Date();
-   let $day = String($today.getDate()).padStart(2,'0');
-   let $month = String($today.getMonth()+1).padStart(2,'0')
+   /* let $day = String($today.getDate()).padStart(2,'0'); */
+   let $day = $today.getDate();
+   //let $month = String($today.getMonth()+1).padStart(2,'0')
+   let $month = $today.getMonth()+1
    let $year = $today.getFullYear();
 
    
 
-    //check is date is ahead of time
-
-    if(month == $month && year == $year && day == $day){
-
-      alert("Es hoy")
-      return true;
-    }
 
 
 
@@ -190,8 +204,21 @@ function isValidDate(dateString)
     var month   = parseInt(parts[1], 10);
     var year    = parseInt(parts[0], 10);
 
+   /*  console.log("Día ingresado",day,"dia actual",$day)
+    console.log("Mes ingresado",month,"mes actual",$month) */
+
+    //check is date is ahead of time
+   /*  let TODAY = month == $month && year == $year && day ==$day
+    let aheadOfTime = month > $month ||  year > $year ||  day > $day
+
+    
+    if(TODAY){
+     
+      alert("es hoy !!!")
+      return true;
+    } */
     // Check the ranges of month and year
-    if(year < 1999 || year > $year || month == 0 ||  month > 12 )
+    if(year < 1999 || year > $year || month == 0 ||  month > 12 || year == $year && month > $month||year == $year && month ==$month && day> $day  )
     {
         return false;
     }
