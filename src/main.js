@@ -100,7 +100,7 @@ function handleSymbols() {
 
     .then((response) => {
    
-      console.log(response.symbols);
+      
       let symbols = response.symbols;
       setSymbols(symbols);
     })
@@ -163,11 +163,7 @@ function isValidDate(dateString)
    let $month = String($today.getMonth()+1).padStart(2,'0')
    let $year = $today.getFullYear();
 
-    console.log("hoy",$today)
-    console.log('dia',$day)
-    console.log("mes",$month)
-    console.log('año',$year)
-
+   
 
 
     // First check for the pattern

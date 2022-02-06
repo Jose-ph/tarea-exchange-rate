@@ -1,7 +1,22 @@
-h1{
-    color: red;
+h2{
+    font-size: 30px !important;
+}
+h3 {
+
+    font-size: 20px;
+
 }
 
+p{
+    font-size: 15px;
+}
+
+#testing{
+    margin-top: 80px !important;
+    margin-bottom: 120px !important;
+
+
+}
 .error {
 
     border: solid 5px;
