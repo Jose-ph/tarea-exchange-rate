@@ -165,6 +165,16 @@ function isValidDate(dateString)
 
    
 
+    //check is date is ahead of time
+
+    if(month == $month && year == $year && day == $day){
+
+      alert("Es hoy")
+      return true;
+    }
+
+
+
 
     // First check for the pattern
     var regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
@@ -181,7 +191,7 @@ function isValidDate(dateString)
     var year    = parseInt(parts[0], 10);
 
     // Check the ranges of month and year
-    if(year < 1999 || year > $year || month == 0 ||month >$month || month > 12 || day>$day)
+    if(year < 1999 || year > $year || month == 0 ||  month > 12 )
     {
         return false;
     }
