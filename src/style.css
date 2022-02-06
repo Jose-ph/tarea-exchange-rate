@@ -1,3 +1,9 @@
 h1{
     color: red;
 }
+
+.error {
+
+    border: solid 5px;
+    border-color: red;
+}
