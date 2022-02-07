@@ -22,7 +22,7 @@ describe('Test exchange rate',()=>{
 
     it('test if options are availabe',()=>{
 
-        let options = document.querySelectorAll('option')
+       
        
         expect((cy.get('option'))).to.exist       
 
@@ -37,10 +37,45 @@ describe('Test exchange rate',()=>{
     it('Sends the form without setting a date',()=>{
 
         cy.get('#btn-consult').click()
+        cy.get('#date').should('have.class','alert alert-danger')
+        cy.get('#date-info').should('have.text','La fecha ingresada no es válida')
+
+       
         
-        //testear la clase y el mensaje de abajo que dice fecha errónea
-        //poner una fecha inválida
+       
+       
         //poner una fecha valida y testear el rates container
+
+    })
+
+
+
+    it('Sends the form with a wrong date', ()=>{
+
+        cy.get('#date').type('2023-02-06')
+        cy.get('#btn-consult').click()
+
+        cy.get('#date').should('have.class','alert alert-danger')
+        cy.get('#date-info').should('have.text','La fecha ingresada no es válida')
+
+
+
+
+    })
+
+    it('Sends the form with a valid date',()=>{
+
+
+        cy.get('#date').type('2022-02-06')
+        cy.get('#select').select("ARS")
+        cy.get('#btn-consult').click()
+
+        cy.get('#form').should('have.class','d-none')
+        cy.get('#rates-container').should('not.have.class','d-none')
+        
+        
+        cy.get('#rates').should('exist')
+        
 
     })
 
