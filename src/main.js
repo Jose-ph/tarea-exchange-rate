@@ -47,8 +47,14 @@ function getExchangeByBaseAndDate(base, date) {
       handleRates(response.rates);
     })
 
-    .catch((error) => console.error("There was a problem", error));
+    .catch((error) =>{
+
+      console.error("There was a problem", error)
+
+
+     } );
 }
+
 
 function handleRates(rates) {
   const $form = document.querySelector("#form");
